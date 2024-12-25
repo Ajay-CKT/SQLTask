@@ -118,20 +118,20 @@ VALUES
 
 ## Queries to Write
 
-1. [Retrieve all customers who have placed an order in the last 30 days.](#a1)
-2. [Get the total amount of all orders placed by each customer.](#a2)
-3. [Update the price of Product C to 45.00.](#a3)
-4. [Add a new column discount to the products table.](#a4)
-5. [Retrieve the top 3 products with the highest price.](#a5)
-6. [Get the names of customers who have ordered Product A.](#a6)
-7. [Join the orders and customers tables to retrieve the customer's name and order date for each order.](#a7)
-8. [Retrieve the orders with a total amount greater than 150.00.](#a8)
-9. [Normalize the database by creating a separate table for order items and updating the orders table to reference the order_items table.](#a9)
-10. [Retrieve the average total of all orders.](#a10)
+1. [Retrieve all customers who have placed an order in the last 30 days.](#query-1)
+2. [Get the total amount of all orders placed by each customer.](#query-2)
+3. [Update the price of Product C to 45.00.](#query-3)
+4. [Add a new column discount to the products table.](#query-4)
+5. [Retrieve the top 3 products with the highest price.](#query-5)
+6. [Get the names of customers who have ordered Product A.](#query-6)
+7. [Join the orders and customers tables to retrieve the customer's name and order date for each order.](#query-7)
+8. [Retrieve the orders with a total amount greater than 150.00.](#query-8)
+9. [Normalize the database by creating a separate table for order items and updating the orders table to reference the order_items table.](#query-9)
+10. [Retrieve the average total of all orders.](#query-10)
 
 ## Queries
 
-## A1
+## Query 1
 
 ```sql
 SELECT DISTINCT c.*
@@ -145,7 +145,7 @@ WHERE o.order_date >= CURDATE() - INTERVAL 30 DAY;
 ![](images/query-1.png)
 [back to Queries to Write](#queries-to-write)
 
-## A2
+## Query 2
 
 ```sql
 SELECT c.name, SUM(o.total_amount) AS total_spent
@@ -159,7 +159,7 @@ GROUP BY c.id;
 ![](images/query-2.png)
 [back to Queries to Write](#queries-to-write)
 
-## A3
+## Query 3
 
 ```sql
 UPDATE products
@@ -172,7 +172,7 @@ WHERE name = 'Product C';
 ![](images/query-3.png)
 [back to Queries to Write](#queries-to-write)
 
-## A4
+## Query 4
 
 ```sql
 ALTER TABLE products
@@ -184,7 +184,7 @@ ADD COLUMN discount DECIMAL(5, 2) DEFAULT 0.00;
 ![](images/query-4.png)
 [back to Queries to Write](#queries-to-write)
 
-## A5
+## Query 5
 
 ```sql
 SELECT *
@@ -198,7 +198,7 @@ LIMIT 3;
 ![](images/query-5.png)
 [back to Queries to Write](#queries-to-write)
 
-## A6
+## Query 6
 
 ```sql
 SELECT DISTINCT c.name
@@ -213,7 +213,7 @@ WHERE p.name = 'Product A';
 ![](images/query-6.png)
 [back to Queries to Write](#queries-to-write)
 
-## A7
+## Query 7
 
 ```sql
 SELECT c.name AS customer_name, o.order_date
@@ -226,7 +226,7 @@ JOIN orders o ON c.id = o.customer_id;
 ![](images/query-7.png)
 [back to Queries to Write](#queries-to-write)
 
-## A8
+## Query 8
 
 ```sql
 SELECT *
@@ -239,7 +239,7 @@ WHERE total_amount > 150.00;
 ![](images/query-8.png)
 [back to Queries to Write](#queries-to-write)
 
-## A9
+## Query 9
 
 ```sql
 CREATE TABLE order_items (
@@ -257,7 +257,7 @@ CREATE TABLE order_items (
 ![](images/query-9.png)
 [back to Queries to Write](#queries-to-write)
 
-## A10
+## Query 10
 
 ```sql
 SELECT AVG(total_amount) AS average_order_total
