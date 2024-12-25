@@ -4,14 +4,15 @@
   The system should have three tables: customers, orders, and products.
 
 ## Table of Contents
-|S. No|Titles|
-|-----|------|
-|1.|[Task Details](#task-details)|
-|2.|[Create database](#create-database)|
-|3.|[Create tables](#create-tables)|
-|4.|[Insert sample data to the tables](#insert-sample-data-to-the-tables)|
-|5.|[Queries to Write..?](#queries-to-write)|
-|6.|[Queries..!](#queries)|
+
+| S. No | Titles                                                                |
+| ----- | --------------------------------------------------------------------- |
+| 1.    | [Task Details](#task-details)                                         |
+| 2.    | [Create database](#create-database)                                   |
+| 3.    | [Create tables](#create-tables)                                       |
+| 4.    | [Insert sample data to the tables](#insert-sample-data-to-the-tables) |
+| 5.    | [Queries to Write..?](#queries-to-write)                              |
+| 6.    | [Queries..!](#queries)                                                |
 
 ## Task Details
 
@@ -23,8 +24,8 @@
 ## Create database
 
 ```sql
-    CREATE DATABASE ecommerce;
-    USE ecommerce;
+CREATE DATABASE ecommerce;
+USE ecommerce;
 ```
 
 ### Result Screenshot
@@ -36,7 +37,7 @@
 1. Products
 
 ```sql
-    CREATE TABLE products (
+CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
@@ -47,7 +48,7 @@
 2. Customers
 
 ```sql
-    CREATE TABLE customers (
+CREATE TABLE customers (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
@@ -58,7 +59,7 @@
 3. Orders
 
 ```sql
-    CREATE TABLE orders (
+CREATE TABLE orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT,
     order_date DATE NOT NULL,
@@ -76,11 +77,11 @@
 1. Products
 
 ```sql
-    INSERT INTO products (name, price, description)
-    VALUES
-        ('Product A', 20.00, 'Description for Product A'),
-        ('Product B', 35.00, 'Description for Product B'),
-        ('Product C', 50.00, 'Description for Product C');
+INSERT INTO products (name, price, description)
+VALUES
+    ('Product A', 20.00, 'Description for Product A'),
+    ('Product B', 35.00, 'Description for Product B'),
+    ('Product C', 50.00, 'Description for Product C');
 ```
 
 ### Result Screenshot
@@ -90,11 +91,11 @@
 2. Customers
 
 ```sql
-    INSERT INTO customers (name, email, address)
-    VALUES
-        ('Alice Smith', 'alice@example.com', '123 Maple St'),
-        ('Bob Johnson', 'bob@example.com', '456 Oak St'),
-        ('Charlie Brown', 'charlie@example.com', '789 Pine St');
+INSERT INTO customers (name, email, address)
+VALUES
+    ('Alice Smith', 'alice@example.com', '123 Maple St'),
+    ('Bob Johnson', 'bob@example.com', '456 Oak St'),
+    ('Charlie Brown', 'charlie@example.com', '789 Pine St');
 ```
 
 ### Result Screenshot
@@ -104,11 +105,11 @@
 3. Orders
 
 ```sql
-    INSERT INTO orders (customer_id, order_date, total_amount)
-    VALUES
-        (1, CURDATE() - INTERVAL 10 DAY, 75.00),
-        (2, CURDATE() - INTERVAL 20 DAY, 150.00),
-        (3, CURDATE() - INTERVAL 40 DAY, 200.00);
+INSERT INTO orders (customer_id, order_date, total_amount)
+VALUES
+    (1, CURDATE() - INTERVAL 10 DAY, 75.00),
+    (2, CURDATE() - INTERVAL 20 DAY, 150.00),
+    (3, CURDATE() - INTERVAL 40 DAY, 200.00);
 ```
 
 ### Result Screenshot
@@ -133,10 +134,10 @@
 ## A1
 
 ```sql
-    SELECT DISTINCT c.*
-    FROM customers c
-    JOIN orders o ON c.id = o.customer_id
-    WHERE o.order_date >= CURDATE() - INTERVAL 30 DAY;
+SELECT DISTINCT c.*
+FROM customers c
+JOIN orders o ON c.id = o.customer_id
+WHERE o.order_date >= CURDATE() - INTERVAL 30 DAY;
 ```
 
 ### Result Screenshot
@@ -147,10 +148,10 @@
 ## A2
 
 ```sql
-    SELECT c.name, SUM(o.total_amount) AS total_spent
-    FROM customers c
-    JOIN orders o ON c.id = o.customer_id
-    GROUP BY c.id;
+SELECT c.name, SUM(o.total_amount) AS total_spent
+FROM customers c
+JOIN orders o ON c.id = o.customer_id
+GROUP BY c.id;
 ```
 
 ### Result Screenshot
@@ -161,9 +162,9 @@
 ## A3
 
 ```sql
-    UPDATE products
-    SET price = 45.00
-    WHERE name = 'Product C';
+UPDATE products
+SET price = 45.00
+WHERE name = 'Product C';
 ```
 
 ### Result Screenshot
@@ -174,8 +175,8 @@
 ## A4
 
 ```sql
-    ALTER TABLE products
-    ADD COLUMN discount DECIMAL(5, 2) DEFAULT 0.00;
+ALTER TABLE products
+ADD COLUMN discount DECIMAL(5, 2) DEFAULT 0.00;
 ```
 
 ### Result Screenshot
@@ -186,10 +187,10 @@
 ## A5
 
 ```sql
-    SELECT *
-    FROM products
-    ORDER BY price DESC
-    LIMIT 3;
+SELECT *
+FROM products
+ORDER BY price DESC
+LIMIT 3;
 ```
 
 ### Result Screenshot
@@ -200,11 +201,11 @@
 ## A6
 
 ```sql
-    SELECT DISTINCT c.name
-    FROM customers c
-    JOIN orders o ON c.id = o.customer_id
-    JOIN products p ON o.id = p.id
-    WHERE p.name = 'Product A';
+SELECT DISTINCT c.name
+FROM customers c
+JOIN orders o ON c.id = o.customer_id
+JOIN products p ON o.id = p.id
+WHERE p.name = 'Product A';
 ```
 
 ### Result Screenshot
@@ -215,9 +216,9 @@
 ## A7
 
 ```sql
-    SELECT c.name AS customer_name, o.order_date
-    FROM customers c
-    JOIN orders o ON c.id = o.customer_id;
+SELECT c.name AS customer_name, o.order_date
+FROM customers c
+JOIN orders o ON c.id = o.customer_id;
 ```
 
 ### Result Screenshot
@@ -228,9 +229,9 @@
 ## A8
 
 ```sql
-    SELECT *
-    FROM orders
-    WHERE total_amount > 150.00;
+SELECT *
+FROM orders
+WHERE total_amount > 150.00;
 ```
 
 ### Result Screenshot
@@ -241,14 +242,14 @@
 ## A9
 
 ```sql
-    CREATE TABLE order_items (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        order_id INT,
-        product_id INT,
-        quantity INT NOT NULL,
-        FOREIGN KEY (order_id) REFERENCES orders(id),
-        FOREIGN KEY (product_id) REFERENCES products(id)
-    );
+CREATE TABLE order_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    product_id INT,
+    quantity INT NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
 ```
 
 ### Result Screenshot
@@ -259,8 +260,8 @@
 ## A10
 
 ```sql
-    SELECT AVG(total_amount) AS average_order_total
-    FROM orders;
+SELECT AVG(total_amount) AS average_order_total
+FROM orders;
 ```
 
 ### Result Screenshot
