@@ -4,7 +4,8 @@
   The system should have three tables: customers, orders, and products.
 
 ## Table of Contents
-
+|S. No|Titles|
+|-----|------|
 |1.|[Task Details](#task-details)|
 |2.|[Create database](#create-database)|
 |3.|[Create tables](#create-tables)|
